@@ -115,6 +115,8 @@
     collision, where should the hitboxes interact. Thankfully this is much
     easier with objects that we have drawn ourselves and are just
     squares/rectangles
+- Window resizing??
+    - love.resize(w, h)
 
 ## Lets Make Pong!
 
