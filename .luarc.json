@@ -2,4 +2,7 @@
   "workspace.library": ["${3rd}/love2d/library"],
   "runtime.version": "Lua 5.4",
   "hint.enable": true,
+    "diagnostics.disable": [
+        "duplicate-set-field"
+    ],
 }

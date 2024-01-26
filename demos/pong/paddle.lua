@@ -29,3 +29,4 @@ function Paddle:update(dt)
     self.y = window_height - self.height
   end
 end
+

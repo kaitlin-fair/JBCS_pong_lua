@@ -40,7 +40,7 @@ function Ball:update(dt)
 
   -- For X axis that means someone scored and so you should mark that, reset the ball, and pause the game
   if self.x < 0 then
-    SCORE.p1 = SCORE.p1 + 1
+    SCORE.p2 = SCORE.p2 + 1
     PLAYING = false
     self:reset()
   elseif (self.x + self.width) > window_width then
@@ -57,7 +57,7 @@ function Ball:checkCollision(paddle)
   local ball_bottom = self.y + self.height
 
   local paddle_left = paddle.x
-  local paddle_right = paddle.y + paddle.width
+  local paddle_right = paddle.x + paddle.width
   local paddle_top = paddle.y
   local paddle_bottom = paddle.y + paddle.height
 
@@ -66,9 +66,6 @@ function Ball:checkCollision(paddle)
   -- if the balls bottom side is further down than the paddles top side
   -- if the balls top side is further up than the paddles bottom side
   -- Then it is a collision, else it is not!
-  print(ball_right > paddle_left, ball_left < paddle_right, ball_top < paddle_bottom, ball_bottom > paddle_top)
-  print(ball_right, paddle_left)
-  print(ball_left, paddle_right)
   return ball_right > paddle_left
       and ball_left < paddle_right
       and ball_top < paddle_bottom
@@ -76,13 +73,30 @@ function Ball:checkCollision(paddle)
 end
 
 function Ball:reset()
+  -- Reset the ball to be in the middle
   local window_height = love.graphics.getHeight()
   local window_width = love.graphics.getWidth()
   self.x = (window_width - self.width) / 2
   self.y = (window_height - self.height) / 2
+
+  -- Make sure the ball returns to the person who just got scored on
+  self.x_speed = self.speed * -1
 end
 
 function Ball:reverse()
+  -- Reverse the ball's direction
   self.x_speed = self.x_speed * -1
-  self.y_speed = self.y_speed * -1
+
+  -- Increase speed of the ball each time it is hit
+  if self.x_speed < 0 then
+    self.x_speed = self.x_speed - 25
+  elseif self.x_speed > 0 then
+    self.x_speed = self.x_speed + 25
+  end
+
+  if self.y_speed < 0 then
+    self.y_speed = self.y_speed - 25
+  elseif self.y_speed > 0 then
+    self.y_speed = self.y_speed + 26
+  end
 end

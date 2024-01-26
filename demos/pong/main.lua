@@ -30,14 +30,36 @@ function love.load()
 end
 
 function love.draw()
+  local font = love.graphics.getFont()
+
   p1:draw()
   p2:draw()
   ball:draw()
 
+  -- Draw scores
+  love.graphics.print(
+    tostring(SCORE.p1),
+    love.graphics.getWidth() / 4,
+    150,
+    0,
+    8,
+    8,
+    font:getWidth(tostring(SCORE.p1)) / 2,
+    font:getHeight() / 2
+  )
+  love.graphics.print(
+    tostring(SCORE.p2),
+    love.graphics.getWidth() - love.graphics.getWidth() / 4,
+    150,
+    0,
+    8,
+    8,
+    font:getWidth(tostring(SCORE.p2)) / 2,
+    font:getHeight() / 2
+  )
   if not PLAYING then
     -- Output message saying press space to begin play
     local play_message = "Press space to begin playing"
-    local font = love.graphics.getFont()
     love.graphics.print(
       play_message,
       love.graphics.getWidth() / 2,
@@ -53,6 +75,7 @@ function love.draw()
     local x = love.graphics.getWidth() / 2
     local y = 0
     local line_len = love.graphics.getHeight() / 20
+---@diagnostic disable-next-line: unused-local
     for i = 1, 20 do
       love.graphics.line({ x, y, x, y + line_len })
       y = y + line_len * 2
@@ -67,7 +90,6 @@ function love.update(dt)
     p2:update(dt)
     ball:update(dt)
     -- Check for a collision and reset if necessary
-    print("paddle1")
     if ball:checkCollision(p1) then
       ball:reverse()
     elseif ball:checkCollision(p2) then

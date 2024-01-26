@@ -4,9 +4,9 @@ A nice intro of the workshop exists in [docs](./docs/)
 
 ## Resources
 
-[Love Wiki](https://www.love2d.org/wiki/love)
-[Love Tutorials](https://love2d.org/wiki/Category:Tutorials)
-[Lua Manual and Wiki](https://www.lua.org/manual/5.4/)
+- [Love Wiki](https://www.love2d.org/wiki/love)
+- [Love Tutorials](https://love2d.org/wiki/Category:Tutorials)
+- [Lua Manual and Wiki](https://www.lua.org/manual/5.4/)
 
 ## Overview
 
@@ -44,7 +44,8 @@ need to be called manually if not called by something else.
 function example()
       -- variables
       name = "World!"
-      -- unless the keyword local is used variables are believed to be global values
+      -- unless the keyword local is used variables
+      -- are considered global values
       local a = 5
     print("Hello,", name)
 end
@@ -56,7 +57,10 @@ Now run it with `lua hello-world.lua`
 
 ## LOVE2D Basics
 
-- Explain callback functions and how love can use them to do things
+- In video game development we generally are having our code called by the
+  engine, in this case LOVE2D is designed to called specific functions when
+  certain actions happen. We will leverage these callback functions to run our
+  games and do a variety of actions.
 - `love.load` (only called once)
   - Used to setup variables, settings, and load resources
   - saves resources
@@ -77,8 +81,8 @@ Now run it with `lua hello-world.lua`
 - `love.mousepressed`, `love.mousereleased`, `love.keypressed`,
   `love.keyreleased`
   - mouse/key press and release
-- The chain: love.load(once) -> love.update -> love.draw -> love.update ->
-  love.draw -> love.update, etc.
+- The chain: love.load(once) -\> love.update -\> love.draw -\> love.update -\>
+  love.draw -\> love.update, etc.
 - `love.focus` - when user clicks off Love window
 - `love.quit` - when user clicks the close button
 - `love.resize(w, h)` - called when user resizes the window
@@ -151,7 +155,7 @@ Y PLANE
       strange)
     - **CHALLENGE**: Make a table loop through it and print those elements
       [tables_and_loops](./demos/lua_basics/tables_and_loops.lua)
-  - We can access table elements in two ways obj.x or obj["x"]
+  - We can access table elements in two ways obj.x or obj\["x"\]
 - cool who cares?
   - Well because tables can be dicts we can create arbitrary objects out of
     tables, like a circle object [demo6](./demos/demo6)
