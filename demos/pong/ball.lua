@@ -78,9 +78,11 @@ function Ball:reset()
   local window_width = love.graphics.getWidth()
   self.x = (window_width - self.width) / 2
   self.y = (window_height - self.height) / 2
+  self.speed = 100
 
   -- Make sure the ball returns to the person who just got scored on
   self.x_speed = self.speed * -1
+  self.y_speed = self.speed
 end
 
 function Ball:reverse()
