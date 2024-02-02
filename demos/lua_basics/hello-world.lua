@@ -7,3 +7,7 @@ function example()
       local a = 5
     print("Hello,", name)
 end
+
+example() -- must call the function in Lua
+
+-- call with `lua hello-world.lua`

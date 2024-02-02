@@ -1,3 +1,5 @@
+-- this is the actual pong game!
+
 Ball = Shape:extend()
 
 function Ball:new(x, y, width, height)
